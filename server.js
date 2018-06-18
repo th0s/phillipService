@@ -1,6 +1,7 @@
-// Library Imports
+// Library / Helper Imports
 const express = require('express');
 const bodyParser = require('body-parser');
+const fakerTest = require('./db/helpers/seedScript');
 
 // Cassandra Import
 const client = require('./db/dbConnect');
