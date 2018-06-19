@@ -1,7 +1,11 @@
-const cassie = require('cassie-odm');
 
-const config = {keyspace: 'ad_service', hosts: ['127.0.0.1']}
-cassie.connect(config, (err, result) => {
+const cassandra = require('cassandra-driver');
+
+const client = new cassandra.Client({contactPoints: ['127.0.0.1'], keyspace: 'ad_service'});
+
+client.connect((err, result) => {
   if (err) { console.log('There was an error: ', err)}
-  console.log(err)
-});
+  console.log('Connected to Cassandra')
+})
+
+module.exports = client
