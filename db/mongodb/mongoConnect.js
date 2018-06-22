@@ -23,12 +23,38 @@ const adSchema = new Schema({
 });
 
 
-const ad = mongoose.model('ad', adSchema);
+const Ad = mongoose.model('ad', adSchema);
 
 
 // Seed Function
-const mongoInsert = () => {
+const populate = (amount) => {
+  let insertArray = [];
 
+  for (let i = 0; i < amount; i++) {
+    let insertObject = new Ad({
+      id: faker.random.number(10000000),
+      name: faker.lorem.words(),
+      description: faker.lorem.sentence(),
+      duration: faker.random.number(500),
+      url: faker.internet.url(),
+      tag: faker.lorem.word()
+    })
+    insertArray.push(insertObject);
+  }
 
-  db.collection.insertMany
+  return insertArray;
 };
+
+const bulkInsert = (contentArr) => {
+  db.insertMany(contentArr, (err, result) => {
+    if (err) (console.log('There was an insertion error: ', err));
+    console.log(result, '<---------- Success!')
+    return
+  })
+};
+
+
+let newArr = populate(10);
+console.time('Insert 10')
+console.log(bulkInsert(newArr));
+console.timeEnd('Insert 10');
