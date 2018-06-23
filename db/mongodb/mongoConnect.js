@@ -28,6 +28,8 @@ const Ad = mongoose.model('ad', adSchema);
 
 // Seed Function
 const populate = (amount) => {
+//const tags = [];
+
   let insertArray = [];
   for (let i = 0; i < amount; i++) {
     let insertObject = new Ad({
@@ -39,35 +41,26 @@ const populate = (amount) => {
       tag: faker.lorem.word()
     })
     insertArray.push(insertObject);
-    // let insertObject = new Ad({
-    //   id: 1,
-    //   name: 'test ',
-    //   description: 'test test test test test test test test ',
-    //   duration: 456,
-    //   url: 'httpa://google.com',
-    //   tag: 'test' 
-    // })
-    // insertArray.push(insertObject);
   }
   bulkInsert(insertArray);
 };
 
 const bulkInsert = (contentArr) => {
-  let bulk = db.collection('ads').initializeUnorderedBulkOp();
-  const final = contentArr.map(item => {bulk.insert(item)})
-  bulk.execute();
-
+  db.collection('ads').insertMany(contentArr, (err, res) => {
+    if (err) {console.log(err)}
+    return
+  })
 };
 
 const timer = () => {
-  let final = 30;
+  let final = 0;
   setInterval(() => {
-    if (final >= 1000000) {
+    if (final >= 10000000) {
       console.log('Finshed!');
       return;
     }
-    populate(1000);
-    final += 2000;
+    populate(6000);
+    final += 6000;
   }, 2000);
 
   
