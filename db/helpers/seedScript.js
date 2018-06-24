@@ -1,55 +1,100 @@
 const client = require('../dbConnect');
 const faker = require('faker');
 
+const firstRun = true;
 
-const seed = (count) => { 
+const tableConfig = () => {
+  let newTable = `
+    CREATE TABLE TABLE IF NOT EXISTS ad_service.ads (
+      id int,
+      name text,
+      description text,
+      duration int,
+      url text,
+      tag text,
+      PRIMARY KEY(id, tag));
+    `
+  ;
+
+  let setTag = `
+    CREATE INDEX IF NOT EXISTS tag_id
+    ON ad_service.ads(tag);
+    `
+  ;
+  client.execute(newTable, (err, res) => {
+    return console.log(err, res)
+  })
+
+  client.execute(setTag, (err, res) => {
+    return console.log(err, res)
+  })
+}
+
+const build = (count) => { 
+  let insertArr = [];
 
   for (let i = 0; i < count; i++) {
-    let id = faker.random.number(10000000)
-    let name = faker.lorem.words()
-    let description = faker.lorem.sentence()
-    let duration = faker.random.number(500)
-    let url = faker.internet.url()
-    let tag = faker.lorem.word()
+    let fakeData = {
+      id: faker.random.number(10000000),
+      name: faker.lorem.words(),
+      description: faker.lorem.sentence(),
+      duration: faker.random.number(500),
+      url: faker.internet.url(),
+      tag:faker.lorem.word()
+    }
 
-    let insert = `
-    INSERT INTO ads (id, name, description, duration, url, tag) 
-    VALUES (
-      ${id}, 
-      '${name}', 
-      '${description}',
-      ${duration}, 
-      '${url}', 
-      '${tag}'
-    )`;
-    
-    console.time('Real Insert Time is : ');
-    client.execute(insert, (err, result) => {
-      if (err) { 
-        console.log('There was an insertion err: ', err)
-        return
+    let query = {
+      query: `
+        INSERT INTO ads (
+          id,
+          name,
+          description,
+          duration,
+          url,
+          tag
+        ) VALUES (
+          ${fakeData.id}, 
+          '${fakeData.name}', 
+          '${fakeData.description}',
+          ${fakeData.duration}, 
+          '${fakeData.url}', 
+          '${fakeData.tag}'
+        )`
       }
-    })
-    console.timeEnd('Real Insert Time is : ');
+    ;    
+    insertArr.push(query);
   }
-  console.log(count)  
-  return
+
+  bulkInsert(insertArr);
+}
+
+const bulkInsert = (contentArr) => {
+  if (tableConfig) {
+    
+  }
+  client.batch(contentArr, (err, res) => {
+    if (err) {    
+      console.log("Error: --- >", err)
+      return
+    }
+      console.log('Success!', res)
+  })
 }
 
 const timer = () => {
-  let final = 60340;
+  let final = 1500;
 
   setInterval(() => {
-    if (final === 10000000) {
+    if (final === 1000) {
       console.log('Finshed!');
       return;
     }
     
     let counter = 2;
     for (let i = 0; i < counter; i++) {
-      seed(1000);
+      build(50);
     }
-    final += 2000;
+    final += 6000;
   }, 2000);
 
   
@@ -57,5 +102,5 @@ const timer = () => {
 timer();
 
 module.exports = {
- seed
+ timer
 };    
