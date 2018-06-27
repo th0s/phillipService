@@ -1,9 +1,8 @@
 // Library / Helper Imports
 const express = require('express');
 const bodyParser = require('body-parser');
-const fakerTest = require('./db/helpers/seedScript');
 
-// Cassandra Import
+// Mongo Connection
 const client = require('./db/dbConnect');
 
 const app = express();
@@ -24,8 +23,7 @@ app.get('/users', (req, res) => {
  
 
 // Create endpoint '/ads
-// app.post('/ads', (req, res) => {
-
-// })
-
-//express.Router
+app.get('/ads', (req, res) => {
+  console.log('Request ---- > ', req)
+  res.end('Done.')
+})
