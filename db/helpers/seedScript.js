@@ -6,7 +6,7 @@ const Schema = mongoose.Schema;
 
 // File Imports
 
-const dbConnect = require('../dbConnect');
+const db = require('../dbConnect');
 const Ad = require('../Schemas/adSchema');
 
 

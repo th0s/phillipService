@@ -23,6 +23,7 @@
     "express-cassandra": "^2.2.0",
     "faker": "^4.1.0",
     "mongoose": "^5.1.6",
-    "nodemon": "^1.17.5"
+    "nodemon": "^1.17.5",
+    "request": "^2.87.0"
   }
 }

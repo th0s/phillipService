@@ -1,5 +1,6 @@
 // Library / Helper Imports
 const express = require('express');
+// const request = require('request');
 const bodyParser = require('body-parser');
 
 // Mongo Connection
@@ -19,11 +20,10 @@ app.get('/users', (req, res) => {
     if (err) {res.status(404).send({message: err})}
     res.send(result.rows);
   })
-})
- 
+}) 
 
 // Create endpoint '/ads
 app.get('/ads', (req, res) => {
-  console.log('Request ---- > ', req)
+  console.log('Request ---- > ', req.query)
   res.end('Done.')
 })
