@@ -11,13 +11,13 @@ const getUserProfile = (userId, tag, cb) => {
     userId: userId,
     tag: tag
   })
-  .then((err, res) => {
-    if (err) { 
-      console.log('There was a userService error: ', err);
-      cb(err, null)
-    }
-    cb(null, res)
-  })
+    .then((err, res) => {
+      if (err) {
+        console.log('There was a userService error: ', err);
+        cb(err, null)
+      }
+      cb(null, res)
+    })
 };
 
 const compileTags = (userProfile, newTags, cb) => {
@@ -60,10 +60,10 @@ const runSystem = (userId, tags, cb) => {
 }
 
 const userProfile = {
-  username:  'test',
+  username: 'test',
   subscriptions: [],
   tags: ['trending', 'gaming'],
-  country:   'USA',
+  country: 'USA',
   state: 'OR',
   city: 'Troutdale',
   dob: 3172018,

@@ -3,7 +3,7 @@ const Ad = require('../Schemas/adSchema');
 
 const findAd = (tag, cb) => {
   console.time('getAd')
-  db.collection('ads').findOne({tag: tag}, (err, result) => {
+  db.collection('ads').findOne({ tag: tag }, (err, result) => {
     if (err) {
       cb(err, null)
     }
@@ -13,7 +13,7 @@ const findAd = (tag, cb) => {
 }
 
 findAd('aut', (err, result) => {
-  if (err) { console.log(err)}
+  if (err) { console.log(err) }
   console.log(result);
 
 })

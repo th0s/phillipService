@@ -35,7 +35,7 @@ const populate = (amount) => {
 const bulkInsert = (contentArr) => {
 
   db.collection('ads').insertMany(contentArr, (err, res) => {
-    if (err) {console.log(err)}
+    if (err) { console.log(err) }
     return
   })
 
@@ -56,6 +56,6 @@ const timer = () => {
     final += 6000;
 
   }, 2000);
-  
+
 }
 timer();
