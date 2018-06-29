@@ -1,6 +1,7 @@
 const db = require('../dbConnect');
 const Ad = require('../Schemas/adSchema');
 
+
 const findAd = (tag, cb) => {
   console.time('getAd')
   db.collection('ads').findOne({ tag: tag }, (err, result) => {
