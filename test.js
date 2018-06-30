@@ -1,8 +1,13 @@
-const assert = require('assert');
+// Import Libraries
+const expect = require('chai');
 const request = require('supertest');
+
+// Import Files
 const server = require('./server');
+const dbHelpers = require('./db/helpers/').dbHelpers;
+const reqHelpers = require('./db/helpers/').requestHelpers;
 
-describe('', function () {
+describe('GET /ads Endpoint Testing', function () {
   it('test GET /ads endpoint', function (done) {
     request(server)
       .get('/ads')
@@ -10,7 +15,7 @@ describe('', function () {
   })
 });
 
-describe('', function () {
+describe('GET /users Endpoint Testing', function () {
   it('test GET /ads endpoint', function (done) {
     request(server)
       .get('/ads')
@@ -18,10 +23,23 @@ describe('', function () {
   })
 });
 
-describe('', function () {
-  it('test GET /ads endpoint', function (done) {
-    request(server)
-      .get('/ads')
-      .expect(200, done)
-  })
-});
+describe('Helper Function Testing', function () {
+  describe('DB Helpers', () => {
+    describe('Should Return Object', () => {
+      it('findAd function', () => {
+        let newEntry = dbHelpers.findAd('aut', (err, res) => {
+          expect(res).to.be.typeof('object');
+        })
+      })
+    });
+
+    describe('URL property should be formatted correctly', () => {
+      it('findAd function', () => {
+        let newEntry = dbHelpers.findAd('aut', (err, res) => {
+          expect(res.url).to.include('http://')
+          expect(res.url).to.include('.com')
+        })
+      })
+    });
+  });
+})
