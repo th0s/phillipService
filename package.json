@@ -19,9 +19,9 @@
   "dependencies": {
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
-    "cassandra-driver": "^3.5.0",
     "express": "^4.16.3",
     "faker": "^4.1.0",
+    "mocha": "^5.2.0",
     "mongoose": "^5.1.6",
     "nodemon": "^1.17.5"
   }
