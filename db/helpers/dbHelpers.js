@@ -13,11 +13,11 @@ const findAd = (tag, cb) => {
   })
 }
 
-findAd('aut', (err, result) => {
-  if (err) { console.log(err) }
-  console.log(result);
+// findAd('aut', (err, result) => {
+//   if (err) { console.log(err) }
+//   console.log(result);
 
-})
+// })
 
 
 module.exports = {
