@@ -33,6 +33,7 @@ jobs:
         
       # run tests!
       - run: npm install
+      - run: service mongodb start
       - run: npm run testCI
 
 
