@@ -16,12 +16,11 @@ app.get('/users', (req, res) => {
 
 // Create endpoint '/ads
 app.get('/ads', (req, res) => {
-  res.sendStatus(200)
-  // helpers.requestHelpers.getUserProfile(req.query.userId, (err, res) => {
-  //   if (err) { res.send(err) }
-  //   res.end(res)
-  // })
+  helpers.requestHelpers.runSystem(req.query.userId, req.query.tags, (err, result) => {
+    if (err) { res.send(err) }
+    res.send(result)
+  })
 })
 
-// Exporting app for testing purposes
+// Exporting app for testing purposes.
 module.exports = app;

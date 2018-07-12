@@ -7,16 +7,16 @@ const server = require('./server');
 const dbHelpers = require('./db/helpers/').dbHelpers;
 const reqHelpers = require('./db/helpers/').requestHelpers;
 
-describe('GET /ads Endpoint Testing', function () {
-  it('test GET /ads endpoint', function (done) {
+describe('GET /ads Endpoint Testing', () => {
+  it('test GET /ads endpoint', (done) => {
     request(server)
       .get('/ads')
       .expect(200, done)
   })
 });
 
-describe('GET /users Endpoint Testing', function () {
-  it('test GET /ads endpoint', function (done) {
+describe('GET /users Endpoint Testing', () => {
+  it('test GET /ads endpoint', (done) => {
     request(server)
       .get('/ads')
       .expect(200, done)

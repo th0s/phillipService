@@ -4,8 +4,7 @@
   "description": "Serving curated ad content for AuroraTube",
   "main": "server.js",
   "scripts": {
-    "testCI": "mocha test.js",
-    "build": "node server.js"
+    "testCI": "mocha test.js"
   },
   "repository": {
     "type": "git",
