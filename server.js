@@ -16,6 +16,7 @@ app.get('/users', (req, res) => {
 
 // Create endpoint '/ads
 app.get('/ads', (req, res) => {
+  console.log(req.query.userId, req.query.tags)
   helpers.requestHelpers.runSystem(req.query.userId, req.query.tags, (err, result) => {
     if (err) { res.send(err) }
     res.send(result)

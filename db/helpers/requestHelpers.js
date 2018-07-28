@@ -81,21 +81,6 @@ const runSystem = (userId, tag, cb) => {
 
 }
 
-// const userProfile = {
-//   username: 'test',
-//   subscriptions: [],
-//   tags: ['trending', 'gaming'],
-//   country: 'USA',
-//   state: 'OR',
-//   city: 'Troutdale',
-//   dob: 3172018,
-//   email: 'test@yahoo.com'
-// };
-
-// const newTags = ['insurance', 'gaming'];
-
-// compileTags(userProfile, newTags);
-
 module.exports = {
   runSystem
 }
